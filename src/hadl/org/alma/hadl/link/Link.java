@@ -7,6 +7,6 @@ package org.alma.hadl.link;
  * @author Maël
  *
  */
-public interface IBindingLink {
+public abstract class Link {
 
 }
