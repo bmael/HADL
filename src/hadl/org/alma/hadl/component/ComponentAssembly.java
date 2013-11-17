@@ -8,16 +8,15 @@ import java.util.List;
 import org.alma.hadl.interfaces.port.ProvidedPort;
 import org.alma.hadl.interfaces.port.RequiredPort;
 import org.alma.hadl.link.Link;
-import org.alma.hadl.link.ProvidedBinding;
 
 /**
  * @author Julien
  *
  */
 public abstract class ComponentAssembly {
-	private List<Link> links;
-	private List<ProvidedPort> providedPorts;
-	private List<RequiredPort> requiredPorts;
+	protected List<Link> links;
+	protected List<ProvidedPort> providedPorts;
+	protected List<RequiredPort> requiredPorts;
 	
 	/**
 	 * Default constructor
@@ -81,4 +80,15 @@ public abstract class ComponentAssembly {
 	}
 	
 	
+	public void addLink(Link link) {
+		this.links.add(link);
+	}
+	
+	public void addProvidedPort(ProvidedPort providedPort) {
+		this.providedPorts.add(providedPort);
+	}
+	
+	public void addRequiredPort(RequiredPort requiredPort) {
+		this.requiredPorts.add(requiredPort);
+	}
 }

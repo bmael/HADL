@@ -14,6 +14,10 @@ public abstract class AttachmentLink extends Link {
 	private Role toRole;
 	private ProvidedPort fromPort;
 	
+	public AttachmentLink() {
+		super();
+	}
+	
 	public AttachmentLink(Role toRole, ProvidedPort fromPort) {
 		super();
 		this.toRole = toRole;
