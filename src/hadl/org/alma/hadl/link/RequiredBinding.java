@@ -13,7 +13,7 @@ public abstract class RequiredBinding extends BindingLink {
 	private RequiredPort toPort;
 	private RequiredPort fromPort;
 	
-	public RequiredBinding(RequiredPort toPort, RequiredPort fromPort) {
-		super(toPort, fromPort);
+	public RequiredBinding(String name, RequiredPort toPort, RequiredPort fromPort) {
+		super(name, toPort, fromPort);
 	}
 }

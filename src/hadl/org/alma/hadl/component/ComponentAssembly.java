@@ -3,6 +3,7 @@
  */
 package org.alma.hadl.component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.alma.hadl.interfaces.port.ProvidedPort;
@@ -14,15 +15,16 @@ import org.alma.hadl.link.Link;
  *
  */
 public abstract class ComponentAssembly {
-	protected List<Link> links;
-	protected List<ProvidedPort> providedPorts;
-	protected List<RequiredPort> requiredPorts;
+	protected String name;
+	protected List<Link> links = new ArrayList<>();
+	protected List<ProvidedPort> providedPorts = new ArrayList<>();
+	protected List<RequiredPort> requiredPorts = new ArrayList<>();
 	
 	/**
 	 * Default constructor
 	 */
 	public ComponentAssembly() {
-		
+		super();
 	}
 	
 	/**
@@ -31,10 +33,26 @@ public abstract class ComponentAssembly {
 	 * @param providedPorts The {@link List} of {@link ProvidedPort}
 	 * @param requiredPorts The {@link List} of {@link RequiredPort}
 	 */
-	public ComponentAssembly(List<Link> links, List<ProvidedPort> providedPorts, List<RequiredPort> requiredPorts) {
+	public ComponentAssembly(String name, List<Link> links, List<ProvidedPort> providedPorts, List<RequiredPort> requiredPorts) {
+		this.name = name;
 		this.links = links;
 		this.providedPorts = providedPorts;
 		this.requiredPorts = requiredPorts;
+	}
+	
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
@@ -57,6 +75,21 @@ public abstract class ComponentAssembly {
 	public List<ProvidedPort> getProvidedPorts() {
 		return providedPorts;
 	}
+	
+	/**
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public ProvidedPort getProvidedPortByName(String name) {
+		for (ProvidedPort providedPort : this.providedPorts) {
+			if ( providedPort.getName().equals(name) ) {
+				return providedPort;
+			}
+		}
+		
+		return null;
+	}
 
 	/**
 	 * @param providedPorts the providedPorts to set
@@ -70,6 +103,21 @@ public abstract class ComponentAssembly {
 	 */
 	public List<RequiredPort> getRequiredPorts() {
 		return requiredPorts;
+	}
+	
+	/**
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public RequiredPort getRequiredPortByName(String name) {
+		for (RequiredPort requiredPort : this.requiredPorts) {
+			if ( requiredPort.getName().equals(name) ) {
+				return requiredPort;
+			}
+		}
+		
+		return null;
 	}
 
 	/**

@@ -13,7 +13,7 @@ public abstract class ProvidedBinding extends BindingLink {
 	private ProvidedPort toPort;
 	private ProvidedPort fromPort;
 	
-	public ProvidedBinding(ProvidedPort toPort, ProvidedPort fromPort) {
-		super(toPort, fromPort);
+	public ProvidedBinding(String name, ProvidedPort toPort, ProvidedPort fromPort) {
+		super(name, toPort, fromPort);
 	}
 }

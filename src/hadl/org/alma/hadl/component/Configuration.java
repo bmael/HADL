@@ -44,8 +44,8 @@ public abstract class Configuration extends ComponentAssembly implements IConnec
 	 * @param components The {@link List} of {@link ComponentAssembly}
 	 * @param connectors The {@link List} of {@link IConnector}
 	 */
-	public Configuration(List<Link> links, List<ProvidedPort> providedPorts, List<RequiredPort> requiredPorts, List<ComponentAssembly> components, List<IConnector> connectors) {
-		super(links, providedPorts, requiredPorts);
+	public Configuration(String name, List<Link> links, List<ProvidedPort> providedPorts, List<RequiredPort> requiredPorts, List<ComponentAssembly> components, List<IConnector> connectors) {
+		super(name, links, providedPorts, requiredPorts);
 		this.components = components;
 		this.connectors = connectors;
 	}

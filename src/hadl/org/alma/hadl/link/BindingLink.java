@@ -13,7 +13,8 @@ public abstract class BindingLink extends Link {
 	private Port toPort;
 	private Port fromPort;
 	
-	public BindingLink(Port toPort, Port fromPort) {
+	public BindingLink(String name, Port toPort, Port fromPort) {
+		super(name);
 		this.toPort = toPort;
 		this.fromPort = fromPort;
 	}

@@ -12,4 +12,8 @@ import org.alma.hadl.interfaces.Interface;
  */
 public abstract class Service extends Interface {
 
+	public Service(String name) {
+		super(name);
+	}
+
 }

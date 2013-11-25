@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.alma.hadl.server.configuration;
+package org.alma.hadl.sample.server.configuration;
 
 import org.alma.hadl.component.Configuration;
 

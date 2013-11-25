@@ -9,4 +9,8 @@ package org.alma.hadl.interfaces.service;
  */
 public abstract class ProvidedService extends Service {
 
+	public ProvidedService(String name) {
+		super(name);
+	}
+
 }

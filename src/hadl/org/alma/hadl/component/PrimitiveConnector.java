@@ -15,15 +15,18 @@ import org.alma.hadl.interfaces.role.Glue;
  */
 public abstract class PrimitiveConnector implements IConnector {
 
-	private List<Glue> glues = new ArrayList<>();
+	protected String name;
+	protected List<Glue> glues = new ArrayList<>();
 	
-	public PrimitiveConnector() {
+	public PrimitiveConnector(String name) {
 		super();
+		this.name = name;
 	}
 	
-//	public PrimitiveConnector(List<Glue> glues) {
-//		this.glues = glues;
-//	}
+	public PrimitiveConnector(String name, List<Glue> glues) {
+		this.name = name;
+		this.glues = glues;
+	}
 	
 	public void addGlue(Glue glue) {
 		this.glues.add(glue);

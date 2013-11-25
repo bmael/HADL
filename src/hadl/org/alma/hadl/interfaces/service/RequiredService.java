@@ -9,4 +9,8 @@ package org.alma.hadl.interfaces.service;
  */
 public abstract class RequiredService extends Service {
 
+	public RequiredService(String name) {
+		super(name);
+	}
+
 }

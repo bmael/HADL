@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.alma.hadl.connector;
+package org.alma.hadl.sample.connector;
 
 import org.alma.hadl.component.PrimitiveConnector;
 
@@ -10,5 +10,9 @@ import org.alma.hadl.component.PrimitiveConnector;
  *
  */
 public class RPC extends PrimitiveConnector {
+
+	public RPC(String name) {
+		super(name);
+	}
 
 }

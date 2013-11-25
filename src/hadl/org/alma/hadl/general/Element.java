@@ -11,7 +11,7 @@ import java.util.Map;
  *
  */
 public class Element {
-	private Map<String, Object> properties;
+	protected Map<String, Object> properties;
 	
 	public Element() {
 		this.properties = new Hashtable<>();
