@@ -6,6 +6,7 @@ package org.alma.hadl.interfaces.port;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.alma.hadl.component.ComponentAssembly;
 import org.alma.hadl.observer.Observable;
 import org.alma.hadl.observer.Observer;
 
@@ -16,8 +17,8 @@ import org.alma.hadl.observer.Observer;
 public abstract class ProvidedPort extends Port implements Observable {
 	protected List<Observer> observers = new ArrayList<>();
 	
-	public ProvidedPort(String name) {
-		super(name);
+	public ProvidedPort(ComponentAssembly owner, String name) {
+		super(owner, name);
 	}
 
 	@Override
@@ -29,6 +30,14 @@ public abstract class ProvidedPort extends Port implements Observable {
 	public void notifyObservers(Object args) {
 		for (Observer observer : observers) {
 			observer.update(this, args);
+		}
+	}
+	
+	@Override
+	public void notifyObserversExceptCaller(Observer caller, Object args) {
+		for (Observer observer : observers) {
+			if ( !(observer.equals(caller)) )
+				observer.update(this, args);
 		}
 	}
 	

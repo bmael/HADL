@@ -19,12 +19,19 @@ public class RPCGlue extends Glue {
 
 	@Override
 	public void update(Observable obs, Object args) {
-		// TODO Auto-generated method stub
-		System.out.println("In RPCGlue from " + args);
 		if ( obs instanceof Caller ) {
+			System.out.println("In RPCGlue from Caller with args " + args);
 			for (Role role : calledRoles) {
 				if ( role instanceof Called ) {
-					((Called) role).send(args);
+					((Called) role).send(this, args);
+				}
+			}
+		}
+		else if ( obs instanceof Called ) {
+			System.out.println("In RPCGlue from Called");
+			for (Role role : callerRoles) {
+				if ( role instanceof Caller ) {
+					((Caller) role).send(this, args);
 				}
 			}
 		}

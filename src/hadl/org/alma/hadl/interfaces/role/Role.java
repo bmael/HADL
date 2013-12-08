@@ -32,6 +32,14 @@ public abstract class Role extends Interface implements Observable {
 			observer.update(this, args);
 		}
 	}
+	
+	@Override
+	public void notifyObserversExceptCaller(Observer caller, Object args) {
+		for (Observer observer : observers) {
+			if ( !(observer.equals(caller)) )
+				observer.update(this, args);
+		}
+	}
 
 	@Override
 	public void notifyObserver(Observer obs, Object args) {

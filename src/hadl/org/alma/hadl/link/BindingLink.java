@@ -4,12 +4,13 @@
 package org.alma.hadl.link;
 
 import org.alma.hadl.interfaces.port.Port;
+import org.alma.hadl.observer.Observer;
 
 /**
  * @author Maël
  *
  */
-public abstract class BindingLink extends Link {
+public abstract class BindingLink extends Link implements Observer {
 	private Port toPort;
 	private Port fromPort;
 	

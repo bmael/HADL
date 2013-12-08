@@ -9,7 +9,7 @@ import org.alma.hadl.interfaces.port.ProvidedPort;
 import org.alma.hadl.interfaces.role.Role;
 import org.alma.hadl.link.AttachmentLink;
 import org.alma.hadl.observer.Observable;
-import org.alma.hadl.sample.client.port.SendRequest;
+import org.alma.hadl.sample.client.port.SendRequestPort;
 import org.alma.hadl.sample.connector.Caller;
 
 /**
@@ -24,14 +24,13 @@ public class ClientRPC extends AttachmentLink {
 
 	@Override
 	public void update(Observable obs, Object args) {
-		// TODO Auto-generated method stub
-		if ( obs instanceof SendRequest ) {
-			System.out.println("In ClientRPC from " + ((ArrayList<String>) args).get(1) + " - " + ((ArrayList<String>) args).get(0));
-			((Caller) this.toRole).send(args);
+		if ( obs instanceof SendRequestPort ) {
+			System.out.println("In ClientRPC from SendRequestPort with args" + ((ArrayList<String>) args));
+			((Caller) this.toRole).send(this, args);
 		}
-		// instanceof Caller
-		else {
-			//System.out.println("Retour de bâton!!!");
+		else if ( obs instanceof Caller ) {
+			System.out.println("In ClientRPC from Caller");
+			((SendRequestPort) this.fromPort).receive(this, args);
 		}
 	}
 

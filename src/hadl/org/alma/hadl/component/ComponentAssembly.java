@@ -23,8 +23,9 @@ public abstract class ComponentAssembly {
 	/**
 	 * Default constructor
 	 */
-	public ComponentAssembly() {
+	public ComponentAssembly(String name) {
 		super();
+		this.name = name;
 	}
 	
 	/**
@@ -81,9 +82,9 @@ public abstract class ComponentAssembly {
 	 * @param name
 	 * @return
 	 */
-	public ProvidedPort getProvidedPortByName(String name) {
+	public ProvidedPort getProvidedPortByType(Class<?> type) {
 		for (ProvidedPort providedPort : this.providedPorts) {
-			if ( providedPort.getName().equals(name) ) {
+			if ( providedPort.getClass().equals(type) ) {
 				return providedPort;
 			}
 		}
@@ -110,9 +111,9 @@ public abstract class ComponentAssembly {
 	 * @param name
 	 * @return
 	 */
-	public RequiredPort getRequiredPortByName(String name) {
+	public RequiredPort getRequiredPortByType(Class<?> type) {
 		for (RequiredPort requiredPort : this.requiredPorts) {
-			if ( requiredPort.getName().equals(name) ) {
+			if ( requiredPort.getClass().equals(type) ) {
 				return requiredPort;
 			}
 		}

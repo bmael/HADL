@@ -3,6 +3,7 @@
  */
 package org.alma.hadl.interfaces.port;
 
+import org.alma.hadl.component.ComponentAssembly;
 import org.alma.hadl.interfaces.Interface;
 
 
@@ -11,9 +12,18 @@ import org.alma.hadl.interfaces.Interface;
  *
  */
 public abstract class Port extends Interface {
-
-	public Port(String name) {
+	protected ComponentAssembly owner;
+	
+	public Port(ComponentAssembly owner, String name) {
 		super(name);
+		this.owner = owner;
+	}
+
+	/**
+	 * @return the owner
+	 */
+	public ComponentAssembly getOwner() {
+		return owner;
 	}
 
 }

@@ -3,6 +3,7 @@
  */
 package org.alma.hadl.component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.alma.hadl.interfaces.port.ProvidedPort;
@@ -18,16 +19,16 @@ import org.alma.hadl.observer.Observer;
  */
 public abstract class Component extends ComponentAssembly implements Observer {
 
-	protected String name;
-	protected List<RequiredService> requiredServices;
-	protected List<ProvidedService> providedServices;
+	protected Configuration parentConfiguration;	// Can be null in the case of a stand alone Component
+	protected List<RequiredService> requiredServices = new ArrayList<>();
+	protected List<ProvidedService> providedServices = new ArrayList<>();
 
 
 	/**
 	 * 
 	 */
-	public Component() {
-		super();
+	public Component(String name) {
+		super(name);
 	}
 
 	
@@ -41,22 +42,6 @@ public abstract class Component extends ComponentAssembly implements Observer {
 		this.requiredServices = requiredServices;
 		this.providedServices = providedServices;
 	}
-	
-	
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
 
 
 	/**
@@ -66,14 +51,15 @@ public abstract class Component extends ComponentAssembly implements Observer {
 		return requiredServices;
 	}
 	
+	
 	/**
 	 * 
 	 * @param name
 	 * @return
 	 */
-	public RequiredService getRequiredServiceByName(String name) {
+	public RequiredService getRequiredServiceByType(Class<?> type) {
 		for (RequiredService requiredService : this.requiredServices) {
-			if ( requiredService.getName().equals(name) ) {
+			if ( requiredService.getClass().equals(type) ) {
 				return requiredService;
 			}
 		}
@@ -103,9 +89,9 @@ public abstract class Component extends ComponentAssembly implements Observer {
 	 * @param name
 	 * @return
 	 */
-	public ProvidedService getProvidedServiceByName(String name) {
+	public ProvidedService getProvidedServiceByType(Class<?> type) {
 		for (ProvidedService providedService : this.providedServices) {
-			if ( providedService.getName().equals(name) ) {
+			if ( providedService.getClass().equals(type) ) {
 				return providedService;
 			}
 		}
@@ -120,10 +106,34 @@ public abstract class Component extends ComponentAssembly implements Observer {
 		this.providedServices = providedServices;
 	}
 	
+	
+	/**
+	 * @return the parentConfiguration
+	 */
+	public Configuration getParentConfiguration() {
+		return parentConfiguration;
+	}
+
+
+	/**
+	 * @param parentConfiguration the parentConfiguration to set
+	 */
+	public void setParentConfiguration(Configuration parentConfiguration) {
+		this.parentConfiguration = parentConfiguration;
+	}
+
+
+	/**
+	 * @param requiredService
+	 */
 	public void addRequiredService(RequiredService requiredService) {
 		this.requiredServices.add(requiredService);
 	}
 	
+	
+	/**
+	 * @param providedService
+	 */
 	public void addProvidedService(ProvidedService providedService) {
 		this.providedServices.add(providedService);
 	}

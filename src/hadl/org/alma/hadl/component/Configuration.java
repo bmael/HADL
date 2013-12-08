@@ -14,15 +14,15 @@ import org.alma.hadl.link.Link;
  *
  */
 public abstract class Configuration extends ComponentAssembly implements IConnector {
-	private List<ComponentAssembly> components;
-	private List<IConnector> connectors;
+	protected List<ComponentAssembly> components;
+	protected List<IConnector> connectors;
 	
 	
 	/**
 	 * Default Constructor
 	 */
-	public Configuration() {
-		super();
+	public Configuration(String name) {
+		super(name);
 	}
 
 
@@ -30,8 +30,8 @@ public abstract class Configuration extends ComponentAssembly implements IConnec
 	 * @param components The {@link List} of {@link ComponentAssembly}
 	 * @param connectors The {@link List} of {@link IConnector}
 	 */
-	public Configuration(List<ComponentAssembly> components, List<IConnector> connectors) {
-		super();
+	public Configuration(String name, List<ComponentAssembly> components, List<IConnector> connectors) {
+		super(name);
 		this.components = components;
 		this.connectors = connectors;
 	}
@@ -80,6 +80,22 @@ public abstract class Configuration extends ComponentAssembly implements IConnec
 	 */
 	public void setConnectors(List<IConnector> connectors) {
 		this.connectors = connectors;
+	}
+	
+	
+	/**
+	 * @param c
+	 */
+	public void addComponentAssembly(ComponentAssembly c) {
+		this.components.add(c);
+	}
+	
+	
+	/**
+	 * @param ic
+	 */
+	public void addIConnector(IConnector ic) {
+		this.connectors.add(ic);
 	}
 	
 }
